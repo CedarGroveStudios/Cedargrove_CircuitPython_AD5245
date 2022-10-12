@@ -77,8 +77,6 @@ Documentation
 =============
 `NAU7802 CircuitPython Driver API Class Description <https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/pseudo_readthedocs_cedargrove_ad5245.pdf>`_
 
-.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/DSC05820a_lores.jpg
-
 `CedarGrove AD5245 Breakout OSH Park Project <https://oshpark.com/shared_projects/WcYMJx7L>`_
 
 .. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/AD5245_breakout_for_fritzing.png
