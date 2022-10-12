@@ -1,4 +1,3 @@
-# SPDX-FileCopyrightText: 2017 Scott Shawcroft, written for Adafruit Industries
 # SPDX-FileCopyrightText: Copyright (c) 2022 JG for Cedar Grove Maker Studios
 #
 # SPDX-License-Identifier: MIT
@@ -7,7 +6,7 @@
 ================================================================================
 
 A CircuitPython driver for the AD5245 digital potentiometer.
-
+Thank you to Bryan Siepert for the driver concept inspiration.
 
 * Author(s): JG
 
@@ -16,22 +15,107 @@ Implementation Notes
 
 **Hardware:**
 
-.. todo:: Add links to any specific hardware product page(s), or category page(s).
-  Use unordered list & hyperlink rST inline format: "* `Link Text <url>`_"
+* Cedar Grove Studios AD5245 breakout or equivalent
 
 **Software and Dependencies:**
 
 * Adafruit CircuitPython firmware for the supported boards:
   https://circuitpython.org/downloads
 
-.. todo:: Uncomment or remove the Bus Device and/or the Register library dependencies
-  based on the library's use of either.
-
-# * Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
+* Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 # * Adafruit's Register library: https://github.com/adafruit/Adafruit_CircuitPython_Register
 """
 
-# imports
+import board
+import busio
+from adafruit_bus_device.i2c_device import I2CDevice
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/CedarGroveStudios/Cedargrove_CircuitPython_AD5245.git"
+
+
+_AD5245_DEFAULT_ADDRESS = 0x2C  # 44, 0b00101100
+
+
+class AD5245:
+    """Driver for the DS3502 I2C Potentiometer.
+
+    :param address: The I2C device address for the device. Default is ``0x2C``.
+    :param wiper: The default and inital wiper value. Default is 0.
+    """
+
+    _BUFFER = bytearray(1)
+
+    def __init__(self, address=_AD5245_DEFAULT_ADDRESS, wiper=0):
+
+        self._i2c = busio.I2C(board.SCL, board.SDA)
+        self._device = I2CDevice(self._i2c, address)
+
+        self._wiper = wiper
+        self._default_wiper = wiper
+        self._normalized_wiper = self._wiper / 255.0
+        self._write_to_device(0, wiper)
+
+    def _write_to_device(self, command, value):
+        """Write command and data value to the device."""
+        with self._device:
+            self._device.write(bytes([command & 0xFF, value & 0xFF]))
+
+    def _read_from_device(self):
+        """Reads the contents of the data register."""
+        with self._device:
+            self._device.readinto(self._BUFFER)
+        return self._BUFFER
+
+    @property
+    def wiper(self):
+        """The raw value of the potentionmeter's wiper.
+        :param wiper_value: The raw wiper value from 0 to 255.
+        """
+        return self._wiper
+
+    @wiper.setter
+    def wiper(self, value=0):
+        if value < 0 or value > 255:
+            raise ValueError("raw wiper value must be from 0 to 255")
+        self._write_to_device(0x00, value)
+        self._wiper = value
+
+    @property
+    def normalized_wiper(self):
+        """The normalized value of the potentionmeter's wiper.
+        :param normalized_wiper_value: The normalized wiper value from 0.0 to 1.0.
+        """
+        return self._normalized_wiper
+
+    @normalized_wiper.setter
+    def normalized_wiper(self, value):
+        if value < 0 or value > 1.0:
+            raise ValueError("normalized wiper value must be from 0.0 to 1.0")
+        self._write_to_device(0x00, int(value * 255.0))
+        self._normalized_wiper = value
+
+    @property
+    def default_wiper(self):
+        """The default value of the potentionmeter's wiper.
+        :param wiper_value: The raw wiper value from 0 to 255.
+        """
+        return self._default_wiper
+
+    @default_wiper.setter
+    def default_wiper(self, value):
+        if value < 0 or value > 255:
+            raise ValueError("default wiper value must be from 0 to 255")
+        self._default_wiper = value
+
+    def set_default(self, default):
+        """A dummy helper to maintain UI compatibility digital
+        potentiometers with EEROM capability (dS3502). The AD5245's
+        wiper value will be set to 0 unless the default value is
+        set explicitly during or after class instantiation."""
+        self._default_wiper = default
+
+    def shutdown(self):
+        """Connects the W to the B terminal and open circuits the A terminal.
+        The contents of the wiper register are not changed."""
+        self._write_to_device(0x20, 0)
