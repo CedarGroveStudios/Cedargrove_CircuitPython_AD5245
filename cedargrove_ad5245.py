@@ -38,10 +38,11 @@ _AD5245_DEFAULT_ADDRESS = 0x2C  # 44, 0b00101100
 
 
 class AD5245:
-    """Driver for the DS3502 I2C Potentiometer.
+    """Class representing the Cedar Grove AD5245, an I2C digital linear taper
+    potentiometer.
 
     :param address: The I2C device address for the device. Default is ``0x2C``.
-    :param wiper: The default and inital wiper value. Default is 0.
+    :param wiper: The inital wiper value. Default is 0.
     """
 
     _BUFFER = bytearray(1)
@@ -116,6 +117,6 @@ class AD5245:
         self._default_wiper = default
 
     def shutdown(self):
-        """Connects the W to the B terminal and open circuits the A terminal.
+        """Connects the W to the B terminal and opens the A terminal connection.
         The contents of the wiper register are not changed."""
         self._write_to_device(0x20, 0)
