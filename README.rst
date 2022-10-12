@@ -84,14 +84,11 @@ Usage Example
 
 Documentation
 =============
-`NAU7802 CircuitPython Driver API Class Description <https://github.com/CedarGroveStudios/CircuitPython_AD5245/main/media/pseudo_readthedocs_cedargrove_ad5245.pdf>`_
-
-.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/main/media/DSC05820a_lores.jpg
+`NAU7802 CircuitPython Driver API Class Description <https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/pseudo_readthedocs_cedargrove_ad5245.pdf>`_
 
 `CedarGrove AD5245 Breakout OSH Park Project <https://oshpark.com/shared_projects/WcYMJx7L>`_
 
-.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/main/media/AD5245_breakout_close.png
-.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/main/media/AD5245_breakout_for_fritzing.png
+.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/AD5245_breakout_for_fritzing.png
 
 For information on building library documentation, please check out
 `this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
