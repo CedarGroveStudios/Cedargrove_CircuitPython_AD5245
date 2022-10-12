@@ -20,11 +20,10 @@ Introduction
 
 A CircuitPython driver for the AD5245 digital potentiometer.
 
-The AD5245 Digital Potentiometer breakout board is a simple implementation of the
-Analog Devices' I2C, 10K-ohm chip. The potentiometer sports 256 resistance steps
-and can work with a power source from 2.7v to 5.5v. The pins act similarly to a
-passive resistive potentiometer, but require that voltages placed on any of the
-three pins not exceed the power supply voltage or drop below ground potential.
+The AD5245 Digital Potentiometer is an I2C, 10K-ohm chip. The potentiometer sports
+256 resistance steps and can work with a power source from 2.7v to 5.5v. The pins
+act similarly to a passive resistive potentiometer, but require that voltages placed
+on any of the three pins not exceed the power supply voltage or drop below ground potential.
 
 The Cedar Grove AD5245 custom breakout board provides power and signal connections
 for I2C and the potentiometer chip. The AD5245 is also integrated with the
