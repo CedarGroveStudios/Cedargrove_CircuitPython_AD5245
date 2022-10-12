@@ -20,6 +20,7 @@ Introduction
 
 A CircuitPython driver for the AD5245 digital potentiometer.
 
+.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/AD5245_breakout_close.png
 
 Dependencies
 =============
@@ -80,7 +81,6 @@ Documentation
 
 `CedarGrove AD5245 Breakout OSH Park Project <https://oshpark.com/shared_projects/WcYMJx7L>`_
 
-.. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/AD5245_breakout_close.png
 .. image:: https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/AD5245_breakout_for_fritzing.png
 
 For information on building library documentation, please check out
