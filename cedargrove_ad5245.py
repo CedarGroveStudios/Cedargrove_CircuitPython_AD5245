@@ -31,7 +31,7 @@ import busio
 from adafruit_bus_device.i2c_device import I2CDevice
 
 __version__ = "0.0.0+auto.0"
-__repo__ = "https://github.com/CedarGroveStudios/Cedargrove_CircuitPython_AD5245.git"
+__repo__ = "https://github.com/CedarGroveStudios/CircuitPython_AD5245.git"
 
 
 _AD5245_DEFAULT_ADDRESS = 0x2C  # 44, 0b00101100
