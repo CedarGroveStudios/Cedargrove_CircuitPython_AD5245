@@ -78,12 +78,12 @@ Usage Example
     print("Wiper set to %d"%ad5245.wiper)
 
 
-``nau7802_simpletest.py`` and other examples can be found in the ``examples`` folder.
+``ad5245_simpletest.py`` and other examples can be found in the ``examples`` folder.
 
 
 Documentation
 =============
-`NAU7802 CircuitPython Driver API Class Description <https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/pseudo_readthedocs_cedargrove_ad5245.pdf>`_
+`AD5245 CircuitPython Driver API Class Description <https://github.com/CedarGroveStudios/CircuitPython_AD5245/blob/master/media/pseudo_readthedocs_cedargrove_ad5245.pdf>`_
 
 `CedarGrove AD5245 Breakout OSH Park Project <https://oshpark.com/shared_projects/WcYMJx7L>`_
 
