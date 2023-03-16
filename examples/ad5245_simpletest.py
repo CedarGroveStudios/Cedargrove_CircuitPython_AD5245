@@ -13,7 +13,6 @@ ad5245 = cedargrove_ad5245.AD5245(address=0x2C)
 wiper_output = AnalogIn(board.A0)
 
 while True:
-
     ad5245.wiper = 255
     print("Wiper set to %d" % ad5245.wiper)
     voltage = wiper_output.value
